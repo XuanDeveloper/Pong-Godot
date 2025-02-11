@@ -1,0 +1,69 @@
+[gd_scene load_steps=10 format=3 uid="uid://xygapt65jabh"]
+
+[ext_resource type="Texture2D" uid="uid://btetyoqvrh3is" path="res://assets/sprites/campo-roxo.png" id="1_mrefn"]
+[ext_resource type="PackedScene" uid="uid://fno6tski1ckc" path="res://jogador.tscn" id="2_khsp4"]
+[ext_resource type="PackedScene" uid="uid://cuihebqg5623g" path="res://bola.tscn" id="3_el8m0"]
+[ext_resource type="PackedScene" uid="uid://brkwqh5gkn3c" path="res://game_manager.tscn" id="4_m7e7j"]
+[ext_resource type="PackedScene" uid="uid://dk4m5fujc3fwx" path="res://gol.tscn" id="5_6ho1f"]
+[ext_resource type="FontFile" uid="uid://digoyp3piidnm" path="res://assets/fonte/PublicPixel-z84yD.ttf" id="6_cig65"]
+[ext_resource type="Texture2D" uid="uid://cbn3om1lt04uc" path="res://assets/sprites/jogador.png" id="7_qj55k"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_hy83h"]
+font = ExtResource("6_cig65")
+font_size = 50
+
+[sub_resource type="LabelSettings" id="LabelSettings_s64c0"]
+font = ExtResource("6_cig65")
+font_size = 50
+
+[node name="main" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(623.5, 378.5)
+scale = Vector2(1.45703, 1.55417)
+texture = ExtResource("1_mrefn")
+
+[node name="jogador1" parent="." groups=["player"] instance=ExtResource("2_khsp4")]
+position = Vector2(64, 360)
+jogador1 = true
+
+[node name="jogador2" parent="." groups=["player"] instance=ExtResource("2_khsp4")]
+position = Vector2(1216, 360)
+rotation = 6.28319
+
+[node name="bola" parent="." instance=ExtResource("3_el8m0")]
+position = Vector2(640, 360)
+
+[node name="game_manager" parent="." instance=ExtResource("4_m7e7j")]
+
+[node name="Gol1" parent="." instance=ExtResource("5_6ho1f")]
+position = Vector2(-16, 8)
+
+[node name="Gol2" parent="." instance=ExtResource("5_6ho1f")]
+position = Vector2(1288, 16)
+
+[node name="pointPlayer1" type="Label" parent="."]
+offset_left = 520.0
+offset_top = 8.0
+offset_right = 570.0
+offset_bottom = 58.0
+text = "0
+"
+label_settings = SubResource("LabelSettings_hy83h")
+
+[node name="pointPlayer2" type="Label" parent="."]
+offset_left = 712.0
+offset_top = 8.0
+offset_right = 832.0
+offset_bottom = 64.0
+text = "0"
+label_settings = SubResource("LabelSettings_s64c0")
+
+[node name="linha" type="Sprite2D" parent="."]
+position = Vector2(640, 360)
+scale = Vector2(1, 5.90769)
+texture = ExtResource("7_qj55k")
+
+[connection signal="body_entered" from="bola" to="bola" method="_on_body_entered"]
+[connection signal="area_entered" from="Gol1" to="game_manager" method="_on_gol_1_area_entered"]
+[connection signal="area_shape_entered" from="Gol2" to="game_manager" method="_on_gol_2_area_shape_entered"]

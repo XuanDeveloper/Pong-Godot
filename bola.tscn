@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://cuihebqg5623g"]
+
+[ext_resource type="Script" path="res://bola.gd" id="1_33gla"]
+[ext_resource type="Texture2D" uid="uid://cc6kek8bfu38" path="res://assets/sprites/bola.png" id="2_3inmx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e3nec"]
+
+[node name="bola" type="Area2D"]
+script = ExtResource("1_33gla")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+texture = ExtResource("2_3inmx")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_e3nec")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 1.5
+one_shot = true
+
+[connection signal="area_exited" from="." to="." method="_on_area_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
