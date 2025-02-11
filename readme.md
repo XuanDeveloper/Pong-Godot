@@ -1,6 +1,6 @@
 # Pong em Godot 4 - Tutorial
 
-Este projeto foi baseado no tutorial do canal [Clear Code](https://youtu.be/AAIxswnnVtg).
+Este projeto foi baseado no tutorial do canal [Desenvolvendo Jogos](https://youtu.be/AAIxswnnVtg).
 
 ## Descrição
 
